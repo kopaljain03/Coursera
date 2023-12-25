@@ -5,21 +5,35 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Navbar() {
   const navigate = useNavigate();
   const [username, setusername] = useState(null);
   useEffect(() => {
-    fetch("http://localhost:3000/admin/me", {
-      headers: {
-        "Content-type": "application/json",
-        token: "Bearer " + localStorage.getItem("token"),
-      },
-    }).then((res) => {
-      res.json().then((data) => {
-        if (data.username) setusername(data.username);
+    // fetch("http://localhost:3000/admin/me", {
+    // headers: {
+    //   "Content-type": "application/json",
+    //   token: "Bearer " + localStorage.getItem("token"),
+    // },
+    // }).then((res) => {
+    //   res.json().then((data) => {
+    //     if (data.username) setusername(data.username);
+    //   });
+    // });
+
+    axios
+      .get("http://localhost:3000/admin/me", {
+        headers: {
+          token: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        if (res.data.username) setusername(res.data.username);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }, []);
   if (username) {
     return (

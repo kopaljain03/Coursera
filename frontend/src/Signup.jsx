@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 function Signup() {
   const [username, setusername] = useState("");
@@ -11,15 +12,20 @@ function Signup() {
   function handlesignup() {
     // var username = document.getElementById("username").value;
     // var password = document.getElementById("password").value;
-    fetch("http://localhost:3000/admin/signup", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-      headers: { "Content-type": "application/json" },
-    }).then((res) => {
-      res.json().then((data) => {
-        console.log(data);
+    // fetch("http://localhost:3000/admin/signup", {
+    //   method: "POST",
+    //   body: JSON.stringify({ username, password }),
+    //   headers: { "Content-type": "application/json" },
+    // }).then((res) => {
+    //   res.json().then((data) => {
+    //     console.log(data);
+    //   });
+    // });
+    axios
+      .post("http://localhost:3000/admin/signup", { username, password })
+      .then((res) => {
+        console.log(res.data);
       });
-    });
   }
   return (
     <center>
