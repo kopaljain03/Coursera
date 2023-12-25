@@ -1,6 +1,6 @@
 const express = require("express");
 const { User, Admin, Course } = require("../db/index");
-const { adminAuth } = require("../middleware/auth");
+const { adminAuth, getToken, getUser } = require("../middleware/auth");
 const router = express.Router();
 // Admin routes
 router.post("/signup", async (req, res) => {

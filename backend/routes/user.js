@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-const { userAuth } = require("../middleware/auth");
+const { userAuth, getToken, getUser } = require("../middleware/auth");
 const { User, Admin, Course } = require("../db/index");
 const router = express.Router();
 

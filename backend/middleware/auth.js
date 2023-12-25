@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const { User, Admin, Course } = require("../db/index");
 
 //mongodb+srv://kopaljain03:<vqIglvXPjsLM7vHW>@cluster0.syhlcss.mongodb.net/
 mongoose.connect(
@@ -68,4 +69,6 @@ async function userAuth(req, res, next) {
 module.exports = {
   adminAuth,
   userAuth,
+  getToken,
+  getUser,
 };
